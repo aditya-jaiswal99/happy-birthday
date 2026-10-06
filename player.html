@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Our Love Story ❤️</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            width: 100vw;
+            height: 100vh;
+            overflow: hidden;
+            background: #000;
+        }
+
+        #websiteFrame {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        #musicControl {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 99999;
+
+            padding: 12px 20px;
+            border: none;
+            border-radius: 30px;
+
+            background: rgba(255, 255, 255, 0.25);
+            color: white;
+
+            font-size: 15px;
+            font-weight: bold;
+
+            backdrop-filter: blur(10px);
+
+            cursor: pointer;
+
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+
+            transition: 0.3s;
+        }
+
+        #musicControl:hover {
+            transform: scale(1.08);
+            background: rgba(255, 255, 255, 0.4);
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Website Pages -->
+    <iframe
+        id="websiteFrame"
+        src="index.html">
+    </iframe>
+
+
+    <!-- Permanent Music -->
+    <audio id="bgMusic" loop>
+        <source src="music/love.mp3" type="audio/mpeg">
+    </audio>
+
+
+    <!-- Music Button -->
+    <button id="musicControl">
+        🎵 Music ON
+    </button>
+
+
+    <script>
+
+        const music = document.getElementById("bgMusic");
+        const musicButton = document.getElementById("musicControl");
+
+        let musicPlaying = false;
+
+
+        musicButton.addEventListener("click", function () {
+
+            if (music.paused) {
+
+                music.play();
+
+                musicButton.innerHTML = "🔊 Music ON";
+
+                musicPlaying = true;
+
+            } else {
+
+                music.pause();
+
+                musicButton.innerHTML = "🔇 Music OFF";
+
+                musicPlaying = false;
+            }
+
+        });
+
+    </script>
+
+</body>
+
+</html>

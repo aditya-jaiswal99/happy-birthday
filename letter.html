@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>A Letter For You ❤️</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- Floating Hearts -->
+    <div class="hearts">
+        <span>❤️</span>
+        <span>💗</span>
+        <span>💕</span>
+        <span>💖</span>
+        <span>💓</span>
+        <span>💞</span>
+    </div>
+
+
+    <!-- Background Music -->
+    <audio id="bgMusic" loop>
+        <source src="music/love.mp3" type="audio/mpeg">
+    </audio>
+
+
+    <!-- Music Button -->
+    <button class="music-btn" onclick="toggleMusic()" id="musicBtn">
+        🎵 Music ON
+    </button>
+
+
+    <main class="letter-page">
+
+        <div class="letter-card">
+
+            <div class="big-heart">
+                ❤️
+            </div>
+
+            <p class="small-text">
+                From my heart to yours...
+            </p>
+
+            <h1>
+                A Letter For <span>You</span> 💌
+            </h1>
+
+
+            <!-- Letter Animation -->
+            <div class="letter-text" id="letterText"></div>
+
+
+            <button onclick="window.location.href='love.html'">
+                One Last Surprise 🎁
+            </button>
+
+        </div>
+
+    </main>
+
+
+    <!-- JavaScript -->
+    <script src="script.js"></script>
+
+</body>
+
+</html>

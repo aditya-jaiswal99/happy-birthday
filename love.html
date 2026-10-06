@@ -1,0 +1,115 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Do You Love Me? ❤️</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- Floating Hearts -->
+    <div class="hearts">
+        <span>❤️</span>
+        <span>💗</span>
+        <span>💕</span>
+        <span>💖</span>
+        <span>💓</span>
+        <span>💞</span>
+    </div>
+
+    <main class="love-page">
+
+        <div class="love-card">
+
+            <div class="big-heart">
+                ❤️
+            </div>
+
+            <p class="small-text">
+                One last question... 🥺
+            </p>
+
+            <h1>
+                Do You Love <span>Me?</span> ❤️
+            </h1>
+
+            <p class="love-message">
+                Come a little closer, my love… 🫂❤️
+I just want to hold you tight and remind you that you’re my favorite place to be. 💗♾️
+            </p>
+
+            <div class="love-buttons">
+
+                <a href="final.html" class="yes-button">
+                    YES ❤️
+                </a>
+
+                <button class="no-button" id="noButton">
+                    NO 😜
+                </button>
+
+            </div>
+
+        </div>
+
+    </main>
+
+   
+<script>
+
+    const noButton = document.getElementById("noButton");
+
+    function moveNoButton() {
+
+        // Button ki actual size
+        const buttonWidth = noButton.offsetWidth;
+        const buttonHeight = noButton.offsetHeight;
+
+        // Screen ke andar safe area
+        const padding = 20;
+
+        const maxX = window.innerWidth - buttonWidth - padding;
+        const maxY = window.innerHeight - buttonHeight - padding;
+
+        // Random position
+        const randomX =
+            padding + Math.random() * (maxX - padding);
+
+        const randomY =
+            padding + Math.random() * (maxY - padding);
+
+        // Button ko screen ke andar rakho
+        noButton.style.position = "fixed";
+        noButton.style.left = randomX + "px";
+        noButton.style.top = randomY + "px";
+    }
+
+    // Mouse No ke paas jaate hi button move karega
+    noButton.addEventListener("mouseenter", moveNoButton);
+
+    // Mobile touch
+    noButton.addEventListener("touchstart", function (event) {
+        event.preventDefault();
+        moveNoButton();
+    });
+
+    // Agar click hone ki koshish kare
+    noButton.addEventListener("click", function (event) {
+        event.preventDefault();
+        moveNoButton();
+    });
+
+</script>
+
+
+
+</body>
+
+</html>
+
