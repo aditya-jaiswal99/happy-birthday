@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -23,6 +22,24 @@
         <span>💞</span>
     </div>
 
+
+    <!-- =============================== -->
+    <!-- BACKGROUND MUSIC -->
+    <!-- =============================== -->
+
+    <audio id="bgMusic" loop>
+        <source src="music/love.mp3" type="audio/mpeg">
+    </audio>
+
+    <button class="music-btn" onclick="toggleMusic()" id="musicBtn">
+        🎵 Music ON
+    </button>
+
+
+    <!-- =============================== -->
+    <!-- LOVE QUESTION -->
+    <!-- =============================== -->
+
     <main class="love-page">
 
         <div class="love-card">
@@ -41,7 +58,9 @@
 
             <p class="love-message">
                 Come a little closer, my love… 🫂❤️
-I just want to hold you tight and remind you that you’re my favorite place to be. 💗♾️
+                <br>
+                I just want to hold you tight and remind you
+                that you’re my favorite place to be. 💗♾️
             </p>
 
             <div class="love-buttons">
@@ -60,56 +79,81 @@ I just want to hold you tight and remind you that you’re my favorite place to 
 
     </main>
 
-   
-<script>
 
-    const noButton = document.getElementById("noButton");
+    <!-- =============================== -->
+    <!-- NO BUTTON SCRIPT -->
+    <!-- =============================== -->
 
-    function moveNoButton() {
+    <script>
 
-        // Button ki actual size
-        const buttonWidth = noButton.offsetWidth;
-        const buttonHeight = noButton.offsetHeight;
+        const noButton = document.getElementById("noButton");
 
-        // Screen ke andar safe area
-        const padding = 20;
+        function moveNoButton() {
 
-        const maxX = window.innerWidth - buttonWidth - padding;
-        const maxY = window.innerHeight - buttonHeight - padding;
+            const buttonWidth = noButton.offsetWidth;
+            const buttonHeight = noButton.offsetHeight;
 
-        // Random position
-        const randomX =
-            padding + Math.random() * (maxX - padding);
+            const padding = 20;
 
-        const randomY =
-            padding + Math.random() * (maxY - padding);
+            const maxX =
+                window.innerWidth - buttonWidth - padding;
 
-        // Button ko screen ke andar rakho
-        noButton.style.position = "fixed";
-        noButton.style.left = randomX + "px";
-        noButton.style.top = randomY + "px";
-    }
+            const maxY =
+                window.innerHeight - buttonHeight - padding;
 
-    // Mouse No ke paas jaate hi button move karega
-    noButton.addEventListener("mouseenter", moveNoButton);
+            const randomX =
+                padding + Math.random() * (maxX - padding);
 
-    // Mobile touch
-    noButton.addEventListener("touchstart", function (event) {
-        event.preventDefault();
-        moveNoButton();
-    });
+            const randomY =
+                padding + Math.random() * (maxY - padding);
 
-    // Agar click hone ki koshish kare
-    noButton.addEventListener("click", function (event) {
-        event.preventDefault();
-        moveNoButton();
-    });
-
-</script>
+            noButton.style.position = "fixed";
+            noButton.style.left = randomX + "px";
+            noButton.style.top = randomY + "px";
+        }
 
 
+        // Desktop
+        noButton.addEventListener(
+            "mouseenter",
+            moveNoButton
+        );
+
+
+        // Mobile
+        noButton.addEventListener(
+            "touchstart",
+            function (event) {
+
+                event.preventDefault();
+
+                moveNoButton();
+
+            }
+        );
+
+
+        // Click
+        noButton.addEventListener(
+            "click",
+            function (event) {
+
+                event.preventDefault();
+
+                moveNoButton();
+
+            }
+        );
+
+    </script>
+
+
+    <!-- =============================== -->
+    <!-- MAIN SCRIPT -->
+    <!-- =============================== -->
+
+    <script src="script.js"></script>
 
 </body>
 
 </html>
-

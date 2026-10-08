@@ -103,13 +103,81 @@ function celebrate() {
     }
 }
 
-
-
 // ===============================
 // BACKGROUND MUSIC
 // ===============================
 
 let musicStarted = false;
+
+
+// ===============================
+// SAVE MUSIC POSITION
+// ===============================
+
+function saveMusicPosition() {
+
+    const music = document.getElementById("bgMusic");
+
+    if (!music) {
+        return;
+    }
+
+    if (!music.paused) {
+        localStorage.setItem("musicTime", music.currentTime);
+        localStorage.setItem("musicPlaying", "true");
+    }
+}
+
+
+// ===============================
+// RESTORE MUSIC POSITION
+// ===============================
+
+function restoreMusic() {
+
+    const music = document.getElementById("bgMusic");
+
+    if (!music) {
+        return;
+    }
+
+    const savedTime = localStorage.getItem("musicTime");
+    const musicPlaying = localStorage.getItem("musicPlaying");
+
+    if (savedTime) {
+        music.currentTime = parseFloat(savedTime);
+    }
+
+    // Continue music automatically
+    if (musicPlaying === "true") {
+
+        music.play()
+            .then(function () {
+
+                musicStarted = true;
+
+                const musicBtn =
+                    document.getElementById("musicBtn");
+
+                if (musicBtn) {
+                    musicBtn.innerHTML = "🎵 Music ON";
+                }
+
+            })
+            .catch(function () {
+
+                console.log(
+                    "Browser requires user interaction for music."
+                );
+
+            });
+    }
+}
+
+
+// ===============================
+// MUSIC BUTTON
+// ===============================
 
 function toggleMusic() {
 
@@ -121,12 +189,19 @@ function toggleMusic() {
         return;
     }
 
+
+    // PLAY
     if (music.paused) {
 
         music.play()
             .then(function () {
 
                 musicStarted = true;
+
+                localStorage.setItem(
+                    "musicPlaying",
+                    "true"
+                );
 
                 if (musicBtn) {
                     musicBtn.innerHTML = "🎵 Music ON";
@@ -135,13 +210,24 @@ function toggleMusic() {
             })
             .catch(function (error) {
 
-                console.log("Music play blocked:", error);
+                console.log(
+                    "Music play blocked:",
+                    error
+                );
 
             });
 
-    } else {
+    }
+
+    // PAUSE
+    else {
 
         music.pause();
+
+        localStorage.setItem(
+            "musicPlaying",
+            "false"
+        );
 
         if (musicBtn) {
             musicBtn.innerHTML = "🔇 Music OFF";
@@ -151,7 +237,40 @@ function toggleMusic() {
 
 
 // ===============================
-// START MUSIC AFTER USER CLICK
+// SAVE POSITION EVERY SECOND
+// ===============================
+
+setInterval(function () {
+
+    saveMusicPosition();
+
+}, 1000);
+
+
+// ===============================
+// SAVE BEFORE LEAVING PAGE
+// ===============================
+
+window.addEventListener("beforeunload", function () {
+
+    saveMusicPosition();
+
+});
+
+
+// ===============================
+// RESTORE MUSIC WHEN PAGE LOADS
+// ===============================
+
+document.addEventListener("DOMContentLoaded", function () {
+
+    restoreMusic();
+
+});
+
+
+// ===============================
+// FIRST USER CLICK
 // ===============================
 
 document.addEventListener("click", function () {
@@ -167,6 +286,11 @@ document.addEventListener("click", function () {
 
             musicStarted = true;
 
+            localStorage.setItem(
+                "musicPlaying",
+                "true"
+            );
+
             const musicBtn =
                 document.getElementById("musicBtn");
 
@@ -177,8 +301,11 @@ document.addEventListener("click", function () {
         })
         .catch(function () {
 
-            console.log("Browser blocked automatic music.");
+            console.log(
+                "Browser blocked automatic music."
+            );
 
         });
 
 }, { once: true });
+
